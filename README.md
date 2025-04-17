@@ -1,4 +1,4 @@
-# Alakad
+# Synapsis.id
 
 A new Flutter project.
 
