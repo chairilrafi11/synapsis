@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            clang cmake ninja-build pkg-config libgtk-3-dev dpkg-dev
+            clang cmake ninja-build pkg-config libgtk-3-dev dpkg-dev fakeroot
 
       - name: Install dependencies
         run: flutter pub get
@@ -35,23 +35,27 @@ jobs:
       - name: Build for Linux
         run: flutter build linux
 
-      - name: Create .deb package
+      - name: Package .deb file
         run: |
-          mkdir -p myapp_deb/usr/local/bin
-          mkdir -p myapp_deb/DEBIAN
-          cp build/linux/x64/release/bundle/myapp myapp_deb/usr/local/bin/
-          echo "Package: myapp
-Version: 1.0.0
-Section: base
-Priority: optional
-Architecture: amd64
-Depends: libgtk-3-0
-Maintainer: Your Name <you@email.com>
-Description: My Flutter Linux App" > myapp_deb/DEBIAN/control
-          mv myapp_deb.deb myapp_1.0.0_amd64.deb
+          mkdir -p dist/synapsis/DEBIAN
+          mkdir -p dist/synapsis/usr/local/bin
+          cp -r build/linux/x64/release/bundle/* dist/synapsis/usr/local/bin/
+
+          cat <<EOF > dist/synapsis/DEBIAN/control
+          Package: synapsis
+          Version: 1.0.0
+          Section: base
+          Priority: optional
+          Architecture: amd64
+          Depends: libgtk-3-0
+          Maintainer: Chairil Rafi chairilraffi@gmail.com
+          Description: Synapsis.id
+          EOF
+
+          dpkg-deb --build dist/synapsis dist/synapsis.deb
 
       - name: Upload .deb artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter-linux-deb
-          path: myapp_1.0.0_amd64.deb
+          name: flutter-linux-app-deb
+          path: dist/synapsis.deb
