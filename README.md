@@ -91,6 +91,13 @@
    
 **Aplikasi sudah terdapat Database, setelah user login apabila memjalankan aplikasi kembali maka user tidak perlu login kembali**
 
+## Cara Integration Test
+
+1. Modifikasi folder **integration_test**:
+
+2. Jalankan Script berikut di terminal:
+   flutter test integration_test/api_test.dart
+   
 ## Cara Membuild Linux Via CI/CD GithubActions
 
 Project ini sudah terkonfigurasi untuk build otomatis aplikasi Flutter di Linux melalui GitHub Actions.
