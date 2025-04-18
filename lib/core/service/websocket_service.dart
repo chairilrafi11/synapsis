@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:centrifuge/centrifuge.dart';
-import 'package:synapsis/core/service/env_service.dart';
 import 'package:synapsis/core/util/core_function.dart';
 
 class WebsocketService extends GetxService {
@@ -14,9 +13,6 @@ class WebsocketService extends GetxService {
         privateChannelPrefix: 'ws/fms-dev',
         maxReconnectDelay: Duration(seconds: 30),
         pingInterval: Duration(seconds: 30),
-        retry: (value) {
-          CoreFunction.logPrint("Retry", "event");
-        },
         timeout: Duration(seconds: 60),
         tlsSkipVerify: true,
       ),

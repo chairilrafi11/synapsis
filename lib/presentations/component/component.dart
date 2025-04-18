@@ -160,7 +160,7 @@ class Component {
     void Function()? onClickSuffix,
   }) =>
       InputDecoration(
-        fillColor: ColorPalette.white,
+        fillColor: ColorPalette.whiteBackground,
         filled: true,
         border: OutlineInputBorder(
           borderSide: BorderSide(color: ColorPalette.grey.withAlpha(100)),
@@ -556,7 +556,7 @@ class Component {
         style: ElevatedButton.styleFrom(
           backgroundColor: colorButton,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
           ),
         ),
         child: child,

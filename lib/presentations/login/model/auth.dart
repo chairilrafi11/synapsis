@@ -7,7 +7,7 @@ class Auth {
   String? departmentName;
   String? siteId;
   String? siteName;
-  Null? fleetId;
+dynamic fleetId;
   String? nik;
   String? name;
   String? email;

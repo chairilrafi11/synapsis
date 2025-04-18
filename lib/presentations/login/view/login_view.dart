@@ -2,6 +2,7 @@ import 'package:synapsis/core/app/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:synapsis/core/util/size_config.dart';
 import 'package:synapsis/domain/usecase/textfield_validator.dart';
 import 'package:synapsis/presentations/login/controller/login_cotroller.dart';
 
@@ -22,9 +23,9 @@ class LoginView extends StatelessWidget {
                 return Form(
                   key: controller.formKey,
                   child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    width: SizeConfig.blockSizeHorizontal * 40,
                     margin: Dimens.padding20,
+                    padding: Dimens.padding20.copyWith(left: Dimens.value30, right: Dimens.value30),
                     decoration: BoxDecoration(color: ColorPalette.white, borderRadius: BorderRadius.circular(Dimens.radiusMedium)),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -49,11 +50,20 @@ class LoginView extends StatelessWidget {
                           ),
                           validator: TextFieldValidator.regular,
                         ),
+                        Dimens.marginVerticalSmall(),
+                        if (controller.isError)
+                          Component.textBody(
+                            "Can't find your NIK",
+                            colors: ColorPalette.red,
+                          ),
                         Dimens.marginVerticalXLarge(),
-                        Component.button(
-                          'Submit',
-                          () => controller.onLogin(),
-                          fitWidth: true,
+                        Container(
+                          width: double.infinity,
+                          child: Component.button(
+                            'Submit',
+                            () => controller.onLogin(),
+                            fitWidth: true,
+                          ),
                         ),
                       ],
                     ),
@@ -61,11 +71,11 @@ class LoginView extends StatelessWidget {
                 );
               },
               onLoading: Container(
-                width: double.infinity,
+                width: SizeConfig.blockSizeHorizontal * 40,
                 margin: Dimens.padding20,
                 decoration: BoxDecoration(
                   color: ColorPalette.white,
-                  borderRadius: BorderRadius.circular(Dimens.radiusMedium),
+                  borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -87,26 +97,31 @@ class LoginView extends StatelessWidget {
                         type: TextTitleType.xl2,
                       ),
                     ),
-                    Dimens.marginVerticalLarge(),
+                    Dimens.marginVerticalXXLarge(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.person,
-                          color: ColorPalette.primary,
-                          size: Dimens.imageSizelarge,
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Image.network(
+                            controller.auth?.imageUrl ?? "",
+                            fit: BoxFit.cover,
+                            height: Dimens.imageSizelarge,
+                            width: Dimens.imageSizelarge,
+                          ),
                         ),
                         Dimens.marginHorizontalLarge(),
                         Column(
                           children: [
                             Component.textTitle(
-                              "Ichwan",
-                              type: TextTitleType.l1,
+                              controller.auth?.name,
+                              type: TextTitleType.xl1,
                             ),
                             Dimens.marginVerticalMedium(),
                             Component.textTitle(
-                              "Operator",
+                              controller.auth?.roleName,
                               type: TextTitleType.l3,
+                              colors: ColorPalette.greyText2,
                             ),
                           ],
                         ),
@@ -116,11 +131,10 @@ class LoginView extends StatelessWidget {
                         )
                       ],
                     ),
-                    Dimens.marginVerticalLarge(),
+                    Dimens.marginVerticalXXLarge(),
                   ],
                 ),
               ),
-              
             ),
           ),
         );

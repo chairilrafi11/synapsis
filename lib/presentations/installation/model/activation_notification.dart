@@ -5,7 +5,7 @@ class ActivationNotification {
   String? createdAt;
   String? updatedAt;
   String? headUnitSn;
-  Null? equipment;
+dynamic equipment;
 
   ActivationNotification({
     this.id,

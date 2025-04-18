@@ -13,7 +13,7 @@ class DashboardRepository extends Repository {
   Future<List<Message>> messages() async {
     return await dioService.get(url: Endpoint.messages, body: {
       'sort': 'created_at,asc',
-      'limit': '30',
+      'limit': '100',
       'equipment_id': '691b207886',
     }).then((value) {
       return (value.data as List).map((e) => Message.fromJson(e)).toList();

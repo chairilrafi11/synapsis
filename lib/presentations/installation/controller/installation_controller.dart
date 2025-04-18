@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:centrifuge/centrifuge.dart';
 import 'package:get/get.dart';
-import 'package:synapsis/core/service/websocket_service.dart';
 import 'package:synapsis/core/util/core_function.dart';
 import 'package:synapsis/presentations/installation/model/activation_notification.dart';
 import 'package:synapsis/presentations/installation/repository/installation_repository.dart';
@@ -26,7 +25,8 @@ class InstallationController extends GetxController with StateMixin<String> {
 
   onCheckDevice() async {
     change(generateRandomId(), status: RxStatus.loading());
-    await installationRepository.checkDeviceById("TEST-chairil123").then((response) async {
+    await 3.delay();
+    await installationRepository.checkDeviceById(state!).then((response) async {
       if (response != null) {
         if (response.isActive ?? false) {
           onNavToLogin();

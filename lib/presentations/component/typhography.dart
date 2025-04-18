@@ -12,7 +12,7 @@ class ComponentTyphography {
 
   static TextStyle? displaysmall() => textTheme.displaySmall;
 
-  static TextStyle? headlineLarge() => textTheme.headlineLarge;
+  static TextStyle? headlineLarge() => textTheme.headlineLarge!.copyWith(fontSize: 30);
 
   static TextStyle? headlineMedium() => textTheme.headlineMedium;
 

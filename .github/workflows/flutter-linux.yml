@@ -57,5 +57,5 @@ jobs:
       - name: Upload .deb artifact
         uses: actions/upload-artifact@v4
         with:
-          name: flutter-linux-app-deb
+          name: synapsis-chairil
           path: dist/synapsis.deb

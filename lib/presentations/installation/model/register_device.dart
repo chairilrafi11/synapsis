@@ -1,11 +1,11 @@
 class RegisterDevice {
   String? id;
   bool? isActive;
-  Null? activatedAt;
+dynamic activatedAt;
   String? createdAt;
   String? updatedAt;
   String? headUnitSn;
-  Null? equipment;
+dynamic equipment;
 
   RegisterDevice({
     this.id,

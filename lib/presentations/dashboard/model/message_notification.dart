@@ -10,7 +10,7 @@ class MessageNotification {
   String? deviceType;
   String? categoryId;
   String? equipmentCode;
-  Null? fleetId;
+dynamic fleetId;
   String? equipmentSiteId;
   String? categoryName;
 

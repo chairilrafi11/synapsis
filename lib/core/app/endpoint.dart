@@ -8,7 +8,7 @@ class Endpoint {
   static const String messages = '/monitoring/messages';
 
   //* Auth
-  static const String login = 'login-tablet-unit';
+  static const String login = '/login-tablet-unit';
 
   //* Web Socket
   static const String webSocketMessage = '/monitoring/messages/equipments';

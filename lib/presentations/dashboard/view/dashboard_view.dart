@@ -5,6 +5,7 @@ import 'package:synapsis/core/app/dimens.dart';
 import 'package:synapsis/core/util/size_config.dart';
 import 'package:synapsis/domain/usecase/data_usecase.dart';
 import 'package:synapsis/presentations/component/component.dart';
+import 'package:synapsis/presentations/component/typhography.dart';
 import 'package:synapsis/presentations/dashboard/controller/dashboard_controller.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:synapsis/presentations/dashboard/model/menu.dart';
@@ -16,6 +17,7 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: GetBuilder(
           init: DashboardController(),
           builder: (controller) {
@@ -69,6 +71,7 @@ class DashboardView extends StatelessWidget {
                     ),
                     Container(
                       width: SizeConfig.blockSizeHorizontal * 100,
+                      height: SizeConfig.blockSizeVertical * 100,
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -84,6 +87,16 @@ class DashboardView extends StatelessWidget {
                                   colors: ColorPalette.white,
                                   type: TextTitleType.m1,
                                 ),
+                                const Spacer(),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.network(
+                                    state?.imageUrl ?? "",
+                                    fit: BoxFit.cover,
+                                    height: Dimens.imageSizeSmall25,
+                                    width: Dimens.imageSizeSmall25,
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -96,305 +109,397 @@ class DashboardView extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: ColorPalette.greyBackground2,
-                                              borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  padding: Dimens.padding10,
-                                                  alignment: Alignment.center,
-                                                  decoration: BoxDecoration(
-                                                    color: ColorPalette.black,
-                                                    borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      Image.asset(
-                                                        Constant.iconPath + "ic_speed.png",
-                                                        height: Dimens.iconSizeSmall20,
-                                                      ),
-                                                      Dimens.marginVerticalSmall(),
-                                                      Component.textBody(
-                                                        "Speed",
-                                                        type: TextBodyType.m3,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                                Column(
-                                                  children: [
-                                                    Component.textBody(
-                                                      "100/50 TON",
-                                                      type: TextBodyType.m3,
-                                                    ),
-                                                    Dimens.marginVerticalSmall(),
-                                                  ],
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                              ],
-                                            ),
-                                          ),
-                                          Dimens.marginVerticalSmall(),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: ColorPalette.greyBackground2,
-                                              borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  padding: Dimens.padding10,
-                                                  alignment: Alignment.center,
-                                                  decoration: BoxDecoration(
-                                                    color: ColorPalette.black,
-                                                    borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      Image.asset(
-                                                        Constant.iconPath + "ic_achievement.png",
-                                                        height: Dimens.iconSizeSmall20,
-                                                      ),
-                                                      Dimens.marginVerticalSmall(),
-                                                      Component.textBody(
-                                                        "Achievement",
-                                                        type: TextBodyType.m3,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                                Column(
-                                                  children: [
-                                                    Component.textBody(
-                                                      "100/50 TON",
-                                                      type: TextBodyType.m3,
-                                                    ),
-                                                    Dimens.marginVerticalSmall(),
-                                                  ],
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                              ],
-                                            ),
-                                          ),
-                                          Dimens.marginVerticalSmall(),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              color: ColorPalette.greyBackground2,
-                                              borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Container(
-                                                  padding: Dimens.padding10,
-                                                  alignment: Alignment.center,
-                                                  decoration: BoxDecoration(
-                                                    color: ColorPalette.black,
-                                                    borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                                  ),
-                                                  child: Column(
-                                                    children: [
-                                                      Image.asset(
-                                                        Constant.iconPath + "ic_material.png",
-                                                        height: Dimens.iconSizeSmall20,
-                                                      ),
-                                                      Dimens.marginVerticalSmall(),
-                                                      Component.textBody(
-                                                        "Materials",
-                                                        type: TextBodyType.m3,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                                Component.textTitle(
-                                                  "COALS",
-                                                  type: TextTitleType.l2,
-                                                ),
-                                                Dimens.marginHorizontalMedium(),
-                                              ],
-                                            ),
-                                          ),
-                                          Dimens.marginVerticalSmall(),
-                                          // Container(
-                                          //   padding: Dimens.padding10,
-                                          //   decoration: BoxDecoration(
-                                          //     color: ColorPalette.greyBackground2,
-                                          //     borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                          //   ),
-                                          //   child: Column(
-                                          //     mainAxisSize: MainAxisSize.min,
-                                          //     children: [
-                                          //       Component.textTitle(
-                                          //         "HAULING",
-                                          //         type: TextTitleType.l2,
-                                          //       ),
-                                          //       Dimens.marginVerticalSmall(),
-                                          //       Row(
-                                          //         children: [
-                                          //           Icon(
-                                          //             Icons.timer,
-                                          //             color: ColorPalette.white,
-                                          //           ),
-                                          //           Dimens.marginHorizontalMedium(),
-                                          //           Component.textBody(
-                                          //             "02:00",
-                                          //             type: TextBodyType.m3,
-                                          //           ),
-                                          //         ],
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ),
-                                        ],
-                                      ),
-                                      const Spacer(),
                                       Container(
-                                        padding: Dimens.padding10,
-                                        decoration: BoxDecoration(
-                                          color: ColorPalette.black,
-                                          borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                        ),
-                                        child: Row(
+                                        width: SizeConfig.blockSizeHorizontal * 25,
+                                        child: Column(
                                           mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Component.textBody(
-                                              "DSP-2",
-                                              type: TextBodyType.m3,
-                                              bold: true,
-                                            ),
-                                            Dimens.marginHorizontalMedium(),
-                                            Image.asset(
-                                              Constant.iconPath + "ic_navigation.png",
-                                              height: Dimens.iconSizeSmall20,
-                                            ),
-                                            Dimens.marginHorizontalMedium(),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.timer,
-                                                      color: ColorPalette.white,
-                                                    ),
-                                                    Dimens.marginHorizontalMedium(),
-                                                    Component.textBody(
-                                                      "14m 42s",
-                                                      type: TextBodyType.m3,
-                                                      bold: true,
-                                                    ),
-                                                  ],
-                                                ),
-                                                Component.textBody(
-                                                  "1km To go",
-                                                  type: TextBodyType.m3,
-                                                  bold: true,
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      AnimatedCrossFade(
-                                        firstChild: Column(
-                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                              alignment: Alignment.center,
-                                              width: SizeConfig.blockSizeHorizontal * 15,
-                                              padding: Dimens.padding10,
+                                              width: double.infinity,
                                               decoration: BoxDecoration(
-                                                color: ColorPalette.orange,
+                                                color: ColorPalette.red,
                                                 borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
                                               ),
-                                              child: Component.textTitle(
-                                                "End Activity",
-                                                colors: ColorPalette.white,
-                                              ),
-                                            ),
-                                            Dimens.marginVerticalMedium(),
-                                            InkWell(
-                                              onTap: controller.onClickAvticity,
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                width: SizeConfig.blockSizeHorizontal * 15,
-                                                padding: Dimens.padding10,
-                                                decoration: BoxDecoration(
-                                                  color: ColorPalette.black,
-                                                  borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
-                                                ),
-                                                child: Component.textTitle(
-                                                  "Activity",
-                                                  colors: ColorPalette.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        secondChild: Container(
-                                          width: SizeConfig.blockSizeHorizontal * 30,
-                                          color: ColorPalette.black.withAlpha(100),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              InkWell(
-                                                onTap: controller.onBackActivity,
-                                                child: Container(
-                                                  width: double.infinity,
-                                                  alignment: Alignment.center,
-                                                  padding: Dimens.padding10,
-                                                  decoration: BoxDecoration(
-                                                    color: ColorPalette.black,
-                                                    borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Container(
+                                                      padding: Dimens.padding10,
+                                                      alignment: Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                        color: ColorPalette.black,
+                                                        borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          Image.asset(
+                                                            Constant.iconPath + "ic_speed.png",
+                                                            height: Dimens.iconSizeSmall20,
+                                                          ),
+                                                          Dimens.marginVerticalSmall(),
+                                                          Component.textBody(
+                                                            "Speed",
+                                                            type: TextBodyType.m3,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
                                                   ),
-                                                  child: Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Container(
+                                                      height: 60,
+                                                      child: Row(
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: [
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              children: [
+                                                                Component.textTitle(
+                                                                  "75",
+                                                                  type: TextTitleType.l2,
+                                                                ),
+                                                                Dimens.marginVerticalSmall(),
+                                                                Component.textBody(
+                                                                  "km/h",
+                                                                  type: TextBodyType.m3,
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            child: Column(
+                                                              mainAxisSize: MainAxisSize.min,
+                                                              mainAxisAlignment: MainAxisAlignment.center,
+                                                              children: [
+                                                                Expanded(child: Component.textBody("MAX \n 70", bold: true, type: TextBodyType.s3, textAlign: TextAlign.center)),
+                                                                Expanded(
+                                                                  child: Container(
+                                                                    alignment: Alignment.center,
+                                                                    width: double.infinity,
+                                                                    color: ColorPalette.primary,
+                                                                    child: Component.textBody("MIN \n 35", bold: true, type: TextBodyType.s3, textAlign: TextAlign.center),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Dimens.marginVerticalSmall(),
+                                            Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                color: ColorPalette.greyBackground2,
+                                                borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Container(
+                                                      padding: Dimens.padding10,
+                                                      alignment: Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                        color: ColorPalette.black,
+                                                        borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          Image.asset(
+                                                            Constant.iconPath + "ic_achievement.png",
+                                                            height: Dimens.iconSizeSmall20,
+                                                          ),
+                                                          Dimens.marginVerticalSmall(),
+                                                          Component.textBody(
+                                                            "Achievement",
+                                                            type: TextBodyType.m3,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Column(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Component.textTitle(
+                                                          "100/50 TON",
+                                                          type: TextTitleType.l2,
+                                                        ),
+                                                        Dimens.marginVerticalSmall(),
+                                                        Flexible(
+                                                          child: Stack(
+                                                            alignment: Alignment.center,
+                                                            children: [
+                                                              LinearProgressIndicator(
+                                                                value: 0.5,
+                                                                minHeight: 15,
+                                                                backgroundColor: ColorPalette.black,
+                                                              ),
+                                                              Component.textTitle(
+                                                                "50%",
+                                                                type: TextTitleType.m3,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Dimens.marginVerticalSmall(),
+                                            Container(
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                color: ColorPalette.greyBackground2,
+                                                borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Container(
+                                                      padding: Dimens.padding10,
+                                                      alignment: Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                        color: ColorPalette.black,
+                                                        borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          Image.asset(
+                                                            Constant.iconPath + "ic_material.png",
+                                                            height: Dimens.iconSizeSmall20,
+                                                          ),
+                                                          Dimens.marginVerticalSmall(),
+                                                          Component.textBody(
+                                                            "Materials",
+                                                            type: TextBodyType.m3,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    flex: 3,
+                                                    child: Component.textTitle(
+                                                      "COALS",
+                                                      type: TextTitleType.l2,
+                                                      textAlign: TextAlign.center,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Dimens.marginVerticalSmall(),
+                                            Container(
+                                              padding: Dimens.padding10,
+                                              decoration: BoxDecoration(
+                                                color: ColorPalette.greyBackground2,
+                                                borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                              ),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Component.textTitle(
+                                                    "HAULING",
+                                                    type: TextTitleType.l2,
+                                                  ),
+                                                  Dimens.marginVerticalSmall(),
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
                                                     children: [
                                                       Icon(
-                                                        Icons.arrow_back,
+                                                        Icons.timer,
                                                         color: ColorPalette.white,
-                                                        size: Dimens.iconSizeMedium,
                                                       ),
-                                                      Dimens.marginHorizontalSmall(),
+                                                      Dimens.marginHorizontalMedium(),
                                                       Component.textTitle(
-                                                        "Chose Activity",
+                                                        "02:00",
+                                                        type: TextTitleType.l3,
                                                         colors: ColorPalette.white,
                                                       ),
                                                     ],
                                                   ),
-                                                ),
+                                                ],
                                               ),
-                                              Dimens.marginVerticalMedium(),
-                                              ...List.generate(controller.listActivityMenu.length, (int index) {
-                                                return Container(
-                                                  padding: Dimens.padding10,
-                                                  child: Component.textBody(
-                                                    controller.listActivityMenu[index],
-                                                    type: TextBodyType.m3,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Dimens.marginHorizontalXXLarge(),
+                                      Expanded(
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: Dimens.padding10,
+                                          decoration: BoxDecoration(
+                                            color: ColorPalette.black,
+                                            borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Component.textTitle(
+                                                "DSP-2",
+                                                type: TextTitleType.l2,
+                                                bold: true,
+                                              ),
+                                              Dimens.marginHorizontalLarge(),
+                                              Image.asset(
+                                                Constant.iconPath + "ic_navigation.png",
+                                                height: Dimens.iconSizeSmall20,
+                                              ),
+                                              Dimens.marginHorizontalLarge(),
+                                              Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.timer,
+                                                        color: ColorPalette.white,
+                                                      ),
+                                                      Dimens.marginHorizontalMedium(),
+                                                      Component.textBody(
+                                                        "14m 42s",
+                                                        type: TextBodyType.m3,
+                                                        bold: true,
+                                                      ),
+                                                    ],
                                                   ),
-                                                );
-                                              })
+                                                  Component.textBody(
+                                                    "1km To go",
+                                                    type: TextBodyType.m3,
+                                                    bold: true,
+                                                  ),
+                                                ],
+                                              )
                                             ],
                                           ),
                                         ),
-                                        crossFadeState: controller.isShowActivity ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                                        duration: Constant.durationAnimationContainer,
+                                      ),
+                                      Dimens.marginHorizontalXXLarge(),
+                                      Container(
+                                        width: SizeConfig.blockSizeHorizontal * 25,
+                                        child: AnimatedCrossFade(
+                                          firstChild: Container(
+                                            width: SizeConfig.blockSizeHorizontal * 25,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  alignment: Alignment.center,
+                                                  width: SizeConfig.blockSizeHorizontal * 15,
+                                                  padding: Dimens.padding10,
+                                                  decoration: BoxDecoration(
+                                                    color: ColorPalette.orange,
+                                                    borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                  ),
+                                                  child: Component.textTitle(
+                                                    "End Activity",
+                                                    colors: ColorPalette.white,
+                                                  ),
+                                                ),
+                                                Dimens.marginVerticalMedium(),
+                                                InkWell(
+                                                  onTap: controller.onClickAvticity,
+                                                  child: Container(
+                                                    alignment: Alignment.center,
+                                                    width: SizeConfig.blockSizeHorizontal * 15,
+                                                    padding: Dimens.padding10,
+                                                    decoration: BoxDecoration(
+                                                      color: ColorPalette.black,
+                                                      borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                    ),
+                                                    child: Component.textTitle(
+                                                      "Activity",
+                                                      colors: ColorPalette.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          secondChild: Container(
+                                            height: double.infinity,
+                                            width: SizeConfig.blockSizeHorizontal * 25,
+                                            color: ColorPalette.black.withAlpha(120),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                InkWell(
+                                                  onTap: controller.onBackActivity,
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    alignment: Alignment.centerLeft,
+                                                    padding: Dimens.padding10,
+                                                    decoration: BoxDecoration(
+                                                      color: ColorPalette.black,
+                                                      borderRadius: BorderRadius.circular(Dimens.radiusExtraSmall),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisSize: MainAxisSize.min,
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: [
+                                                        Icon(
+                                                          Icons.arrow_back,
+                                                          color: ColorPalette.white,
+                                                          size: Dimens.iconSizeMedium,
+                                                        ),
+                                                        Dimens.marginHorizontalSmall(),
+                                                        Component.textTitle(
+                                                          "Chose Activity",
+                                                          colors: ColorPalette.white,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Dimens.marginVerticalMedium(),
+                                                ...List.generate(controller.listActivityMenu.length, (int index) {
+                                                  return Container(
+                                                    padding: Dimens.padding10,
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(border: Border(bottom: BorderSide(color: ColorPalette.blackText2))),
+                                                    child: Text(
+                                                      controller.listActivityMenu[index],
+                                                      style: ComponentTyphography.titleMedium()!.copyWith(
+                                                        color: ColorPalette.white,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  );
+                                                })
+                                              ],
+                                            ),
+                                          ),
+                                          crossFadeState: controller.isShowActivity ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                                          duration: Constant.durationAnimationContainer,
+                                        ),
                                       )
                                     ],
                                   ),
@@ -634,6 +739,7 @@ class DashboardView extends StatelessWidget {
                             color: ColorPalette.greyBackground2,
                             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                             child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Container(
                                   padding: Dimens.padding10,
@@ -643,6 +749,7 @@ class DashboardView extends StatelessWidget {
                                     colors: ColorPalette.white,
                                   ),
                                 ),
+                                Dimens.marginHorizontalMedium(),
                                 const Spacer(),
                                 Container(
                                   padding: Dimens.padding10,
