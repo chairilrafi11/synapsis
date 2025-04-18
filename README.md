@@ -1,5 +1,7 @@
 # Mobile Engineer Challenge - Chairil Rafi Purnama
 
+[![Demo Video](preview_images/preview.jpg)](https://drive.google.com/file/d/1dUhp91WXu6B4jdpoGVqN921nOBNb_GVB/view?usp=share_link)
+
 ## Challenge
 - Slicing UI (45 point) 
     - Register Device (Installation Wizard) Page (✅)
